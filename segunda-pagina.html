@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Segunda Página</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #050816;
+        --surface: #0b1220;
+        --primary: #3b82f6;
+        --primary-dark: #93c5fd;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --border: #1e293b;
+        --shadow: 0 20px 45px rgba(2, 6, 23, 0.5);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 15% 10%, rgba(59, 130, 246, 0.2), transparent 35%),
+          radial-gradient(circle at 85% 5%, rgba(37, 99, 235, 0.22), transparent 38%),
+          var(--bg);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 28px;
+        background: rgba(2, 6, 23, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+      }
+
+      .brand {
+        color: #e2e8f0;
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+
+      .menu-paginas {
+        min-width: 245px;
+      }
+
+      .menu-paginas label {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 0.78rem;
+        color: #94a3b8;
+      }
+
+      .menu-paginas select {
+        width: 100%;
+        padding: 10px 12px;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.92rem;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        border-radius: 10px;
+        background: #020617;
+        color: #e2e8f0;
+        outline: none;
+      }
+
+      .hero-secundario {
+        min-height: 280px;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 70px 20px 90px;
+        background:
+          linear-gradient(rgba(2, 6, 23, 0.6), rgba(15, 23, 42, 0.82)),
+          url("https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      }
+
+      .hero-secundario .conteudo {
+        max-width: 860px;
+      }
+
+      .hero-secundario h1 {
+        font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+        color: #f8fafc;
+        margin-bottom: 10px;
+      }
+
+      .hero-secundario p {
+        color: #bfdbfe;
+      }
+
+      main {
+        width: min(930px, calc(100% - 32px));
+        margin: -44px auto 40px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .card-principal {
+        background: rgba(11, 18, 32, 0.92);
+        border: 1px solid rgba(30, 41, 59, 0.9);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 34px;
+      }
+
+      h1 {
+        font-size: clamp(1.65rem, 4vw, 2.35rem);
+        line-height: 1.2;
+        color: var(--primary-dark);
+        margin-bottom: 10px;
+      }
+
+      .subtitulo {
+        color: var(--muted);
+        margin-bottom: 24px;
+      }
+
+      .grid-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 14px;
+      }
+
+      .info-item {
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: #0f172a;
+      }
+
+      .info-item h2 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+        color: var(--primary-dark);
+      }
+
+      .info-item p {
+        color: #cbd5e1;
+        font-size: 0.94rem;
+      }
+
+      .cta {
+        margin-top: 24px;
+        padding: 18px;
+        border-radius: 14px;
+        border: 1px solid #1d4ed8;
+        background: linear-gradient(135deg, #0b1b3b, #0b1220);
+      }
+
+      .cta p {
+        color: #dbeafe;
+      }
+
+      .busca-projetos {
+        margin-top: 20px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        background: #0a1326;
+      }
+
+      .busca-projetos h2 {
+        margin-bottom: 8px;
+      }
+
+      .busca-projetos p {
+        margin-bottom: 12px;
+      }
+
+      .campo-busca {
+        width: 100%;
+        padding: 11px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        background: #020617;
+        color: #e2e8f0;
+        font-family: "Poppins", sans-serif;
+        margin-bottom: 12px;
+      }
+
+      .acoes-arquivo {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+
+      .botao-arquivo {
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        background: #0b1b3b;
+        color: #dbeafe;
+        font-family: "Poppins", sans-serif;
+        cursor: pointer;
+      }
+
+      .botao-arquivo:hover {
+        filter: brightness(1.1);
+      }
+
+      #arquivoXlsx {
+        display: none;
+      }
+
+      .info-arquivo {
+        font-size: 0.88rem;
+        color: #93c5fd;
+        margin-bottom: 12px;
+      }
+
+      .tabela-wrapper {
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+      }
+
+      .tabela-projetos {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 860px;
+      }
+
+      .tabela-projetos th,
+      .tabela-projetos td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #1e293b;
+        text-align: left;
+        font-size: 0.9rem;
+      }
+
+      .tabela-projetos th {
+        background: #0b1b3b;
+        color: #bfdbfe;
+      }
+
+      .tabela-projetos td {
+        color: #cbd5e1;
+      }
+
+      footer {
+        text-align: center;
+        padding: 16px 20px 28px;
+        color: #94a3b8;
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 760px) {
+        .topbar {
+          flex-direction: column;
+          align-items: stretch;
+          padding: 14px 16px;
+        }
+
+        .brand {
+          text-align: center;
+        }
+
+        .card-principal {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">Computação em Nuvem</div>
+      <div class="menu-paginas">
+        <label for="menuNavegacao">Navegação</label>
+        <select id="menuNavegacao" onchange="if(this.value){window.location.href=this.value;}">
+          <option value="">Selecione uma página</option>
+          <option value="index.html">Página inicial</option>
+          <option value="segunda-pagina.html" selected>Segunda página</option>
+        </select>
+      </div>
+    </header>
+
+    <section class="hero-secundario">
+      <div class="conteudo">
+        <h1>Expanda seu conhecimento em nuvem</h1>
+        <p>
+          Explore carreira, tendências e estratégias para aplicar cloud computing com foco em performance e inovação.
+        </p>
+      </div>
+    </section>
+
+    <main>
+      <section class="card-principal">
+        <h1>Bem-vindo(a) à segunda página</h1>
+        <p class="subtitulo">
+          Esta seção complementa o conteúdo principal com uma experiência visual alinhada e mais profissional.
+        </p>
+
+        <div class="grid-info">
+          <article class="info-item">
+            <h2>Layout consistente</h2>
+            <p>Mesmo estilo visual da página inicial para reforçar identidade e organização.</p>
+          </article>
+          <article class="info-item">
+            <h2>Navegação rápida</h2>
+            <p>Use o menu superior para alternar entre as páginas em um clique.</p>
+          </article>
+          <article class="info-item">
+            <h2>Design responsivo</h2>
+            <p>A interface se adapta bem a telas menores, mantendo legibilidade e espaço.</p>
+          </article>
+        </div>
+
+        <div class="cta">
+          <p>Você chegou aqui com sucesso. Continue explorando pelo menu de navegação no topo.</p>
+        </div>
+      </section>
+
+      <section class="card-principal">
+        <h1>Carreira em Cloud Computing</h1>
+        <p class="subtitulo">
+          Profissionais de nuvem são cada vez mais requisitados em áreas técnicas e de gestão.
+        </p>
+
+        <div class="grid-info">
+          <article class="info-item">
+            <h2>Cloud Engineer</h2>
+            <p>Cria e mantém infraestrutura escalável, automação e integração contínua.</p>
+          </article>
+          <article class="info-item">
+            <h2>DevOps Engineer</h2>
+            <p>Conecta desenvolvimento e operação com pipelines, observabilidade e confiabilidade.</p>
+          </article>
+          <article class="info-item">
+            <h2>Arquiteto de Soluções</h2>
+            <p>Define arquitetura de aplicações considerando custo, segurança e desempenho.</p>
+          </article>
+        </div>
+
+        <div class="cta">
+          <p>Certificações como AWS, Azure e Google Cloud podem acelerar sua evolução profissional.</p>
+        </div>
+      </section>
+
+      <section class="card-principal">
+        <h1>Tendências da nuvem</h1>
+        <p class="subtitulo">
+          A nuvem evolui rápido e acompanha necessidades de negócios, dados e inteligência artificial.
+        </p>
+
+        <div class="grid-info">
+          <article class="info-item">
+            <h2>Serverless</h2>
+            <p>Execução por evento, foco no código e cobrança baseada no uso real.</p>
+          </article>
+          <article class="info-item">
+            <h2>FinOps</h2>
+            <p>Práticas de governança e otimização de custos para eficiência financeira na nuvem.</p>
+          </article>
+          <article class="info-item">
+            <h2>IA em nuvem</h2>
+            <p>Serviços gerenciados de IA permitem criar soluções inteligentes com mais agilidade.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card-principal">
+        <h1>Consulta de condutas dos projetos</h1>
+        <p class="subtitulo">
+          Busque dados no arquivo Excel de condutas e acompanhe as principais informações dos projetos.
+        </p>
+
+        <div class="busca-projetos">
+          <h2>Busca por nome, status, responsavel ou conduta</h2>
+          <p>Digite um termo para filtrar os registros do arquivo `.xlsx`.</p>
+          <div class="acoes-arquivo">
+            <button type="button" id="btnEscolherArquivo" class="botao-arquivo">Escolher arquivo .xlsx</button>
+            <button type="button" id="btnArquivoPadrao" class="botao-arquivo">Usar arquivo padrão</button>
+            <input id="arquivoXlsx" type="file" accept=".xlsx" />
+          </div>
+          <input id="buscaProjeto" class="campo-busca" type="text" placeholder="Exemplo: em andamento, Ana, LGPD, PRJ-003" />
+          <div id="infoArquivo" class="info-arquivo">Carregando dados do arquivo projetos-condutas.xlsx...</div>
+          <div class="tabela-wrapper">
+            <table class="tabela-projetos">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Projeto</th>
+                  <th>Responsavel</th>
+                  <th>Status</th>
+                  <th>Prioridade</th>
+                  <th>Inicio</th>
+                  <th>Fim previsto</th>
+                  <th>Orcamento</th>
+                  <th>Conduta</th>
+                  <th>Observacoes</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaProjetosBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 - Projeto de Computação em Nuvem
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script>
+      let projetos = [];
+
+      function renderTabela(lista) {
+        const body = document.getElementById("tabelaProjetosBody");
+        if (!body) return;
+
+        if (!lista.length) {
+          body.innerHTML = '<tr><td colspan="10">Nenhum registro encontrado.</td></tr>';
+          return;
+        }
+
+        body.innerHTML = lista
+          .map(
+            (item) => `
+            <tr>
+              <td>${item.id_projeto || ""}</td>
+              <td>${item.nome_projeto || ""}</td>
+              <td>${item.responsavel || ""}</td>
+              <td>${item.status || ""}</td>
+              <td>${item.prioridade || ""}</td>
+              <td>${item.inicio || ""}</td>
+              <td>${item.fim_previsto || ""}</td>
+              <td>${item.orcamento_brl || ""}</td>
+              <td>${item.conduta || ""}</td>
+              <td>${item.observacoes || ""}</td>
+            </tr>
+          `
+          )
+          .join("");
+      }
+
+      function aplicarFiltro(valor) {
+        const termo = valor.toLowerCase().trim();
+        if (!termo) {
+          renderTabela(projetos);
+          return;
+        }
+
+        const filtrados = projetos.filter((item) =>
+          Object.values(item).some((v) => String(v).toLowerCase().includes(termo))
+        );
+
+        renderTabela(filtrados);
+      }
+
+      function processarWorkbook(workbook) {
+        const info = document.getElementById("infoArquivo");
+        const primeiraAba = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[primeiraAba];
+        projetos = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+        info.textContent = `Dados carregados: ${projetos.length} projeto(s) encontrados.`;
+        renderTabela(projetos);
+      }
+
+      async function carregarPlanilhaPadrao() {
+        const info = document.getElementById("infoArquivo");
+        try {
+          const resposta = await fetch("projetos-condutas.xlsx");
+          if (!resposta.ok) throw new Error("arquivo nao encontrado");
+
+          const dados = await resposta.arrayBuffer();
+          const workbook = XLSX.read(dados, { type: "array" });
+          processarWorkbook(workbook);
+        } catch (erro) {
+          info.textContent = "Nao foi possivel carregar o arquivo projetos-condutas.xlsx.";
+          renderTabela([]);
+          console.error("Erro ao carregar planilha:", erro);
+        }
+      }
+
+      document.getElementById("buscaProjeto").addEventListener("input", (e) => {
+        aplicarFiltro(e.target.value);
+      });
+
+      document.getElementById("btnEscolherArquivo").addEventListener("click", () => {
+        document.getElementById("arquivoXlsx").click();
+      });
+
+      document.getElementById("btnArquivoPadrao").addEventListener("click", () => {
+        carregarPlanilhaPadrao();
+      });
+
+      document.getElementById("arquivoXlsx").addEventListener("change", async (event) => {
+        const info = document.getElementById("infoArquivo");
+        const arquivo = event.target.files && event.target.files[0];
+        if (!arquivo) return;
+
+        try {
+          const buffer = await arquivo.arrayBuffer();
+          const workbook = XLSX.read(buffer, { type: "array" });
+          processarWorkbook(workbook);
+          info.textContent = `Arquivo selecionado: ${arquivo.name} | ${projetos.length} projeto(s) carregados.`;
+        } catch (erro) {
+          info.textContent = "Erro ao ler o arquivo selecionado. Escolha um .xlsx valido.";
+          renderTabela([]);
+          console.error("Erro ao ler arquivo local:", erro);
+        }
+      });
+
+      carregarPlanilhaPadrao();
+    </script>
+  </body>
+</html>

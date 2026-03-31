@@ -4,18 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Computação em Nuvem</title>
-
-    <!-- Fonte -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --azul-escuro: #0f172a;
-        --azul: #2563eb;
-        --azul-claro: #3b82f6;
-        --cinza: #64748b;
-        --bg: #f1f5f9;
-        --branco: #ffffff;
+        --bg: #050816;
+        --surface: #0b1220;
+        --surface-soft: #0f172a;
+        --primary: #3b82f6;
+        --primary-dark: #93c5fd;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --border: #1e293b;
+        --shadow: 0 20px 45px rgba(2, 6, 23, 0.5);
       }
 
       * {
@@ -25,175 +25,310 @@
       }
 
       body {
-        font-family: 'Poppins', sans-serif;
-        background: var(--bg);
-        color: var(--azul-escuro);
+        font-family: "Poppins", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 20% 10%, rgba(59, 130, 246, 0.2), transparent 35%),
+          radial-gradient(circle at 80% 0%, rgba(37, 99, 235, 0.22), transparent 35%),
+          var(--bg);
+        line-height: 1.7;
       }
 
-      header {
-        background: linear-gradient(135deg, var(--azul-escuro), var(--azul));
-        color: white;
-        padding: 20px;
-        text-align: center;
-        font-size: 1.4rem;
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 28px;
+        background: rgba(2, 6, 23, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+      }
+
+      .brand {
+        color: #e2e8f0;
+        font-size: 1.05rem;
         font-weight: 600;
+        letter-spacing: 0.2px;
+      }
+
+      .menu-paginas {
+        min-width: 245px;
+      }
+
+      .menu-paginas label {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 0.78rem;
+        color: #94a3b8;
+      }
+
+      .menu-paginas select {
+        width: 100%;
+        padding: 10px 12px;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.92rem;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        border-radius: 10px;
+        background: #020617;
+        color: #e2e8f0;
+        outline: none;
       }
 
       .hero {
-        height: 300px;
-        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-          url("https://images.unsplash.com/photo-1451187580459-43490279c0fa") center/cover no-repeat;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        min-height: 420px;
+        display: grid;
+        place-items: center;
         text-align: center;
-        color: white;
+        padding: 90px 20px 130px;
+        background:
+          linear-gradient(rgba(2, 6, 23, 0.55), rgba(15, 23, 42, 0.85)),
+          url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+        color: #f8fafc;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(59, 130, 246, 0.2), transparent 55%);
+      }
+
+      .hero-conteudo {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        margin-bottom: 14px;
+        padding: 6px 12px;
+        font-size: 0.76rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        border-radius: 999px;
+        border: 1px solid rgba(147, 197, 253, 0.7);
+        background: rgba(15, 23, 42, 0.55);
+        color: #bfdbfe;
       }
 
       .hero h1 {
-        font-size: 2.4rem;
-        max-width: 700px;
+        max-width: 860px;
+        font-size: clamp(2rem, 4vw, 3.1rem);
+        line-height: 1.2;
+        margin-bottom: 14px;
+      }
+
+      .hero p {
+        max-width: 680px;
+        margin: 0 auto;
+        color: #bfdbfe;
+        font-size: 1.02rem;
+      }
+
+      .hero-metricas {
+        margin-top: 24px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .hero-metricas span {
+        padding: 8px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        background: rgba(2, 6, 23, 0.45);
+        color: #e2e8f0;
+        font-size: 0.88rem;
       }
 
       main {
-        max-width: 1100px;
-        margin: -60px auto 40px;
-        padding: 30px;
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        width: min(1120px, calc(100% - 32px));
+        margin: -58px auto 42px;
+        padding: 34px;
+        background: rgba(11, 18, 32, 0.92);
+        border: 1px solid rgba(30, 41, 59, 0.9);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
       }
 
       section {
-        margin-bottom: 40px;
+        margin-bottom: 34px;
+      }
+
+      section:last-child {
+        margin-bottom: 0;
       }
 
       h2 {
-        color: var(--azul);
-        margin-bottom: 15px;
-        border-left: 5px solid var(--azul);
-        padding-left: 10px;
+        font-size: 1.34rem;
+        margin-bottom: 14px;
+        color: var(--primary-dark);
       }
 
       p {
-        color: var(--cinza);
-        margin-bottom: 15px;
+        color: var(--muted);
       }
 
-      /* CARDS */
       .cards {
+        margin-top: 12px;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
+        gap: 18px;
       }
 
       .card {
-        background: #f8fafc;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        transition: 0.3s;
+        padding: 18px 16px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, #0f172a, var(--surface-soft));
+        box-shadow: 0 8px 18px rgba(2, 6, 23, 0.35);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
       .card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-4px);
+        box-shadow: 0 14px 22px rgba(2, 6, 23, 0.5);
       }
 
       .card h3 {
-        margin-bottom: 10px;
-        color: var(--azul);
+        margin-bottom: 8px;
+        font-size: 1.05rem;
+        color: var(--primary-dark);
       }
 
-      /* BOTÃO */
-      .botao {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 14px 26px;
-        background: linear-gradient(135deg, var(--azul), var(--azul-claro));
-        color: white;
-        text-decoration: none;
-        border-radius: 8px;
-        transition: 0.3s;
+      .servicos-lista {
+        list-style: none;
+        display: grid;
+        gap: 10px;
       }
 
-      .botao:hover {
-        transform: scale(1.05);
+      .servicos-lista li {
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--surface-soft);
+        color: #cbd5e1;
       }
 
-      /* VÍDEO */
       .video {
         position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
+        border-radius: 16px;
         overflow: hidden;
-        border-radius: 10px;
+        padding-bottom: 56.25%;
+        box-shadow: 0 14px 32px rgba(2, 6, 23, 0.2);
       }
 
       .video iframe {
         position: absolute;
-        top: 0;
-        left: 0;
+        inset: 0;
         width: 100%;
         height: 100%;
+        border: 0;
+      }
+
+      .destaque {
+        padding: 20px;
+        border-radius: 14px;
+        border: 1px solid #1d4ed8;
+        background: linear-gradient(135deg, #0b1b3b, #0b1220);
       }
 
       footer {
-        background: var(--azul-escuro);
-        color: white;
         text-align: center;
-        padding: 20px;
+        padding: 26px 20px 30px;
+        color: #94a3b8;
+        font-size: 0.94rem;
+      }
+
+      @media (max-width: 760px) {
+        .topbar {
+          flex-direction: column;
+          align-items: stretch;
+          padding: 14px 16px;
+        }
+
+        .brand {
+          text-align: center;
+        }
+
+        main {
+          padding: 22px;
+          margin-top: -48px;
+        }
       }
     </style>
   </head>
-
   <body>
-    <header>
-      Computação em Nuvem ☁️
+    <header class="topbar">
+      <div class="brand">Computação em Nuvem</div>
+      <div class="menu-paginas">
+        <label for="menuNavegacao">Navegação</label>
+        <select id="menuNavegacao" onchange="if(this.value){window.location.href=this.value;}">
+          <option value="">Selecione uma página</option>
+          <option value="index.html" selected>Página inicial</option>
+          <option value="segunda-pagina.html">Segunda página</option>
+        </select>
+      </div>
     </header>
 
     <section class="hero">
-      <h1>Entenda como a nuvem está transformando a tecnologia</h1>
+      <div class="hero-conteudo">
+        <span class="hero-badge">Tecnologia em alta demanda</span>
+        <h1>Entenda como a computação em nuvem está transformando a tecnologia</h1>
+        <p>
+          Descubra conceitos, benefícios e aplicações reais que impulsionam inovação em empresas de todos os portes.
+        </p>
+        <div class="hero-metricas">
+          <span>Escalabilidade imediata</span>
+          <span>Redução de custos</span>
+          <span>Alta disponibilidade</span>
+        </div>
+      </div>
     </section>
 
     <main>
-
       <section>
         <h2>O que é computação em nuvem?</h2>
         <p>
-          Computação em nuvem é a entrega de recursos de TI pela internet — como servidores,
-          armazenamento, bancos de dados e softwares — de forma sob demanda.
+          Computação em nuvem é a entrega de recursos de TI pela internet, como servidores, armazenamento, bancos de dados e softwares, de forma sob demanda.
         </p>
         <p>
-          Em vez de comprar equipamentos caros, você utiliza serviços online com alta
-          escalabilidade, segurança e praticidade.
+          Em vez de investir em infraestrutura física cara, você usa plataformas escaláveis, seguras e com alta disponibilidade.
         </p>
       </section>
 
       <section>
         <h2>Vantagens da computação em nuvem</h2>
         <div class="cards">
-          <div class="card">
-            <h3>💸 Economia</h3>
-            <p>Você paga apenas pelo que usar.</p>
-          </div>
-          <div class="card">
-            <h3>⚡ Escalabilidade</h3>
-            <p>Aumente ou reduza recursos facilmente.</p>
-          </div>
-          <div class="card">
-            <h3>🔒 Segurança</h3>
-            <p>Proteção de dados em nível profissional.</p>
-          </div>
-          <div class="card">
-            <h3>🌎 Acesso global</h3>
-            <p>Acesse de qualquer lugar do mundo.</p>
-          </div>
+          <article class="card">
+            <h3>Economia</h3>
+            <p>Você paga apenas pelos recursos que utiliza, com maior previsibilidade de custos.</p>
+          </article>
+          <article class="card">
+            <h3>Escalabilidade</h3>
+            <p>Ajuste capacidade rapidamente conforme crescimento de usuários e demanda.</p>
+          </article>
+          <article class="card">
+            <h3>Segurança</h3>
+            <p>Camadas de proteção, backups e políticas de acesso em nível empresarial.</p>
+          </article>
+          <article class="card">
+            <h3>Acesso global</h3>
+            <p>Disponibilidade em qualquer lugar, facilitando colaboração remota e produtividade.</p>
+          </article>
         </div>
       </section>
 
       <section>
         <h2>Exemplos de serviços</h2>
-        <ul>
+        <ul class="servicos-lista">
           <li>Google Drive, OneDrive, Dropbox</li>
           <li>Amazon EC2, Azure Virtual Machines</li>
           <li>Amazon RDS, Cloud SQL</li>
@@ -203,29 +338,72 @@
       </section>
 
       <section>
+        <h2>Modelos de serviço em nuvem</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>IaaS</h3>
+            <p>Infraestrutura como serviço: servidores, rede e armazenamento sob demanda.</p>
+          </article>
+          <article class="card">
+            <h3>PaaS</h3>
+            <p>Plataforma como serviço: ambiente pronto para desenvolver e publicar aplicações.</p>
+          </article>
+          <article class="card">
+            <h3>SaaS</h3>
+            <p>Software como serviço: aplicativos acessados via navegador sem instalação local.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tipos de implantação</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Nuvem pública</h3>
+            <p>Recursos compartilhados e escaláveis fornecidos por provedores como AWS, Azure e GCP.</p>
+          </article>
+          <article class="card">
+            <h3>Nuvem privada</h3>
+            <p>Infraestrutura dedicada para maior controle, personalização e requisitos regulatórios.</p>
+          </article>
+          <article class="card">
+            <h3>Nuvem híbrida</h3>
+            <p>Combina ambientes locais e nuvem para flexibilidade, desempenho e continuidade.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
         <h2>Vídeo explicativo</h2>
         <div class="video">
-          <iframe src="https://www.youtube.com/embed/M988_fsOSWo"
+          <iframe
+            src="https://www.youtube.com/embed/M988_fsOSWo"
             title="Computação em Nuvem"
-            frameborder="0"
             allowfullscreen>
           </iframe>
         </div>
       </section>
 
-      <section>
+      <section class="destaque">
         <h2>Por que aprender isso?</h2>
         <p>
-          A computação em nuvem é uma das áreas mais importantes da tecnologia atual,
-          sendo amplamente utilizada por empresas como Google, Amazon e Microsoft.
+          A computação em nuvem é uma competência estratégica para o mercado atual e está presente em soluções usadas por empresas como Google, Amazon e Microsoft.
         </p>
-        <a href="segunda-pagina.html" class="botao">Começar a aprender</a>
       </section>
 
+      <section>
+        <h2>Boas práticas de segurança</h2>
+        <ul class="servicos-lista">
+          <li>Habilitar autenticação multifator (MFA) em todas as contas administrativas.</li>
+          <li>Aplicar o princípio do menor privilégio em acessos e permissões.</li>
+          <li>Criptografar dados em repouso e em trânsito.</li>
+          <li>Monitorar logs, alertas e atividades suspeitas continuamente.</li>
+        </ul>
+      </section>
     </main>
 
     <footer>
-      © 2026 - Projeto de Computação em Nuvem "OK"
+      © 2026 - Projeto de Computação em Nuvem
     </footer>
   </body>
 </html>

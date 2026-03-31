@@ -1,0 +1,33 @@
+DOCUMENTACAO DE ERRO - TELA 2
+Projeto: Computacao em Nuvem
+Data: 31/03/2026
+
+1) RESUMO
+Foi inserido propositalmente um erro de JavaScript na pagina `segunda-pagina.html` para fins de teste.
+
+2) DESCRICAO DO ERRO
+No final do arquivo, havia um bloco:
+
+<script>
+  // Erro proposital para teste na tela 2
+  funcaoQueNaoExiste();
+</script>
+
+A funcao `funcaoQueNaoExiste()` nao estava definida em nenhum ponto do projeto.
+Isso gerava erro de execucao no navegador (ReferenceError) ao carregar a pagina 2.
+
+3) IMPACTO
+- Exibia erro no console do navegador.
+- Podia interromper scripts futuros na mesma pagina.
+- Causava comportamento inesperado em ambiente de producao.
+
+4) ACAO CORRETIVA
+Foi removido completamente o bloco `<script>` com a chamada da funcao inexistente no arquivo:
+- `segunda-pagina.html`
+
+5) RESULTADO APOS CORRECAO
+- A pagina 2 voltou a carregar sem erro de JavaScript.
+- Nao ha mais chamada para funcao inexistente.
+
+6) RECOMENDACAO
+Antes de publicar alteracoes, validar no console do navegador se ha erros de JavaScript e manter scripts somente quando necessarios.
